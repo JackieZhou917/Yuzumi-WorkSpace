@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 200vh;
+            /* width: 200vw; */
+        }
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: rgb(172, 106, 159);
+            /* position: sticky;
+            left: 0; */
+            position: absolute;
+            z-index: 1;
+        }
+        .box2{
+            height: 100px;
+            background-color: aqua;
+            position: sticky;
+            top: 0;
+        }
+        .wrapper{
+            width: 50px;
+            height: 50px;
+            background-color: #348038;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="wrapper"></div>
+    </div>
+    <div class="box2"></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: #e237cb;
+            position: relative;
+            left: 100px;
+            top: 500px; 
+            /* 相对在原本的文档流的位置 */
+        }
+        .box2{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box2">hello world</div>
+</body>
+</html>
