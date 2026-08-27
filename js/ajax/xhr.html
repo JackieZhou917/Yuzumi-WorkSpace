@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">获取歌手信息</button>
+    <ul id="list">
+        <!-- <li>许嵩</li> -->
+    </ul>
+
+    <script>
+        let btn = document.getElementById('btn')
+        btn.addEventListener('click', () => {
+            // 向后端要数据
+            getData()
+        })
+
+        function getData() {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', 'https://mock.mengxuegu.com/mock/66585c4db462b81cb3916d3e/songger/songger')
+            xhr.send()
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText)
+                    console.log(data);
+                    // 循环数组，拿到数组中的每一个对象，将对象中的 name 值展示在页面上
+                    renderList(data.data)
+                }
+            }
+        }
+
+        function renderList(arr) {
+            const ul = document.getElementById('list')
+            for (let i = 0; i < arr.length; i++) {
+                const item = arrp[i]
+                // 往 ul 中植入一个li
+                const li = document.createElement('li')
+                li.innerText(item.name)
+                ul.appendChild(li)
+            }
+        }
+
+        console.log(btn)
+    </script>
+</body>
+</html>

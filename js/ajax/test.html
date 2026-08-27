@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <input type="text" id="username">
+    <input type="text" id="password">
+    <button id="btn">登录</button>
+
+    <script>
+        // 获取页面元素
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('btn');
+
+        // 给登录按钮绑定点击事件
+        loginBtn.addEventListener('click', () => {
+            // 点击时再读取输入框内容，用反引号拼接URL
+            const requestUrl = `http://localhost:3000/login?username=${usernameInput.value}&password=${passwordInput.value}`;
+        
+            console.log('拼接后的请求地址：', requestUrl);
+            // 后续可以在这里补充 fetch 发送请求的逻辑
+            fetch(requestUrl, {
+                method: 'GET'
+            }).then((res) => {
+                console.log(res)
+            })
+        });
+    </script>
+</body>
+</html>
