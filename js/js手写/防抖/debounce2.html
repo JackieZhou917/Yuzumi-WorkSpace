@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">提交</button>
+
+    <script>
+        const btn = document.getElementById('btn')
+        btn.addEventListener('click', debounce(handle, 1000))
+
+        function handle() {
+            console.log('提交了', this)
+        }
+
+        function debounce(fn, delay) {       // 高阶函数
+            let timer;
+            return function () {    // foo 
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.call(this) // 解决 this 问题
+                }, delay);
+            }
+        }
+
+    </script>
+</body>
+</html>
+
