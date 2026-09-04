@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .item {
+            width: 200px;
+            height: 100px;
+            float: left;
+        }
+        .item:nth-child(1) {
+            background-color: #d82814;
+            
+        }
+        .item:nth-child(2) {
+            background-color: #0c64f0;
+        }
+        .item:nth-child(3) {
+            background-color: #b213d6;
+        }
+
+        /* 解法一：直接给父容器设置高度 */
+        /* ul {
+            height: 100px;   
+        } */
+
+        /* 解法二 */
+        /* .clear{
+            clear: both;
+        } */
+        /* 解法三 */
+        /* ul::after {
+            content: "";
+            display: block;
+            clear: both;
+        } */
+
+        h2 {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <!-- <div class="clear"></div> -->
+    </ul>
+    <h2>hello world</h2>
+</body>
+</html>
