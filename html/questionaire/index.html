@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div class="home">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+        </div>
+        <div class="title">
+            <div class="title-main">欢迎参与周老师问卷调查</div>
+            <div class="title-sub">您的每一个想法都很重要</div>
+        </div>
+        <div class="btn">开始问卷</div>
+    </div>
+
+    <script>
+        const btn = document.querySelector('.btn');
+        btn.addEventListener('click', () => {
+            location.href = './question.html';
+        })
+    </script>
+</body>
+</html>
