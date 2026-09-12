@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/question.css">
 </head>
 <body>
-    答题页面
+    <div class="question">
+        <div class="head">
+            <div class="title">
+                第 <span class="currentNum">3</span> / <span class="totalNum">10</span> 题
+            </div>
+            <div class="range">
+                <div class="range-progress"></div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="card">
+                <div class="order">
+                    Q <span id="num">1</span>
+                </div>
+                <div class="question-title">您最常用以下哪种方式获取新闻资讯？</div>
+                <div class="question-answer">
+                    <ul class="list">
+                        <li class="item">
+                            <input type="radio" name="item" id="item1">
+                            <label for="item1">社交媒体 (微信、微博等) </label>
+                        </li>
+                        <li class="item">
+                            <input type="radio" name="item" id="item2">
+                            <label for="item2">社交媒体 (微信、微博等) </label>
+                        </li>
+                        <li class="item">
+                            <input type="radio" name="item" id="item3">
+                            <label for="item3">社交媒体 (微信、微博等) </label>
+                        </li>
+                        <li class="item">
+                            <input type="radio" name="item" id="item4">
+                            <label for="item4">社交媒体 (微信、微博等) </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="next btn">下一题</div>
+            <div class="submit btn hide">提交</div>
+        </div>
+    </div>
 </body>
 </html>
