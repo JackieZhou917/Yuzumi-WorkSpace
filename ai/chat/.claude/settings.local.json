@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Code/AI-FullStack/ai/**)",
+      "Read(//d/Code/AI-FullStack/**)",
+      "Bash(.claude/settings.local.json 内容:)",
+      "WebSearch"
+    ]
+  }
+}

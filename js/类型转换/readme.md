@@ -29,7 +29,7 @@
     3. 否则，报错
 
 ### valueOf()
-* valueOf() 只能将原始类型的包装类转换为原始值，引用类型还是原本的值。
+* valueOf() 只能将原始类型的包装类转换为原始值，引用类型还是原本的值，所以对引用类型没有用。
 
 ### ToPrimitive(O, hint)
 * 如果没有传入 hint，则其视同 hint为 Number，除非 O 是 Date 对象，在这种情况下，其 hint 视同为 String
