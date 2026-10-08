@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="/home">首页</a></li>
+    <li><a href="/hot">沸点</a></li>
+  </ul>
+
+  <div id="root"></div>
+
+  <script>
+    // 监听点击事件，更新url
+    const routes = [
+      {
+        path: '/home',
+        component: () => {
+          return '<h2 class="home">History 首页</h2>'
+        }
+      },
+      {
+        path: '/hot',
+        component: () => {
+          return '<h3 class="hot">History hot page</h3>'
+        }
+      }
+    ]
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // 默认展示
+      onLoad()
+    })
+
+    // 监听浏览器的前进后退事件
+    window.addEventListener('popstate', () => {
+      renderView(location.pathname)
+    })
+    window.addEventListener('pushstate', () => {
+      renderView(location.pathname)
+    })
+
+    function onLoad() {  // 路径变更渲染对应组件
+      let linkList = document.querySelectorAll('a[href]')
+      linkList.forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault()  // 阻止默认跳转
+          
+          // 更新url
+          history.pushState(null, '', el.href)  // 进入浏览器的history缓存栈
+          // 渲染对应组件
+          renderView(location.pathname)
+        })
+      })
+    }
+
+    function renderView(hashVal) {
+      routes.forEach((route) => {
+        if (route.path === hashVal) {
+          document.getElementById('root').innerHTML = route.component()
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

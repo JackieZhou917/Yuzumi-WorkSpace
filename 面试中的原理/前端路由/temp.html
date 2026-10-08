@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    header{
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+    }
+    nav {
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.1s linear;
+    }
+    nav:hover{
+      font-size: 36px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>首页</nav>
+    <nav>沸点</nav>
+  </header>
+
+  <div id="root"></div>
+
+  <script>
+    const content = [
+      '<h2 class="home">首页</h2>',
+      '<h3 class="hot">hot page</h3>'
+    ]
+
+    let navs = document.getElementsByTagName('nav')
+    Array.from(navs).forEach((nav, index) => {
+      nav.addEventListener('click', () => {
+        document.getElementById('root').innerHTML = content[index]
+      })
+    });
+    
+  </script>
+</body>
+</html>

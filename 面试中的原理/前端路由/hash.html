@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li><a href="#/home">首页</a></li>
+    <li><a href="#/hot">沸点</a></li>
+  </ul>
+
+  <div id="root"></div>
+  <script>
+    const routes = [
+      {
+        path: '/home',
+        component: () => {
+          return '<h2 class="home">首页</h2>'
+        }
+      },
+      {
+        path: '/hot',
+        component: () => {
+          return '<h3 class="hot">hot page</h3>'
+        }
+      }
+    ]
+
+    function renderView(hashVal) {
+      routes.forEach((route) => {
+        if ('#'+route.path === hashVal) {
+          document.getElementById('root').innerHTML = route.component()
+        }
+      })
+    }
+    // 初次刷新页面
+    window.addEventListener('DOMContentLoaded', () => {
+      renderView(location.hash)
+    })
+    // 知道url变更了
+    window.addEventListener('hashchange', () => {
+      console.log(location.hash)
+      // 在routes中找到对应的path, 并渲染对应的组件
+      renderView(location.hash)
+    })
+  </script>
+</body>
+</html>
