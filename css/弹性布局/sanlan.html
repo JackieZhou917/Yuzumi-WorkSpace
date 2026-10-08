@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .page{
+      width: 100%;
+      height: 500px;
+      display: flex;
+    }
+    .left, .right{
+      background-color: #e38686;
+      flex: 0 0 200px
+    }
+    .content{
+      background-color: #3679b0;
+      flex:1;
+    }
+
+    .left{
+      order: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="content">主题内容</div>
+    <div class="left">侧边栏</div>
+    <div class="right">侧边栏</div>
+  </div>
+</body>
+</html>
