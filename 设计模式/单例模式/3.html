@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #model{
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <button id="open">点击弹框</button>
+  <button id="close">关闭弹框</button>
+
+  <script>
+    const Model = (function() {
+      let model = null
+      return function() {
+        if(!model) {
+          model = document.createElement('div')
+          model.id = 'model'
+          model.innerHTML = '我是全局唯一的弹框'
+          model.style.display = 'none'
+          document.body.appendChild(model)
+        }
+        return model
+      }
+    })()
+    document.getElementById('open').addEventListener('click', function() {
+      new Model().style.display = 'block'
+    })
+    document.getElementById('close').addEventListener('click', function() {
+      new Model().style.display = 'none'
+    })
+
+  </script>
+</body>
+</html>
