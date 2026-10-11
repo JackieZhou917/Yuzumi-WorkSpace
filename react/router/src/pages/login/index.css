@@ -1,0 +1,29 @@
+.login{
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #d296eb, #4a0f6a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.username, .password{
+  font-size: 26px;
+  padding: 5px 10px;
+}
+
+button{
+  font-size: 24px;
+  padding: 4px 0;
+}
