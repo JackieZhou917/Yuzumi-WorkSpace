@@ -2,12 +2,26 @@ import { useEffect, useState, useRef } from 'react'
 import AMapLoader from "@amap/amap-jsapi-loader";
 import { Cascader } from 'antd-mobile'
 import { options } from '@/lib/data.js'
+import { weeks } from '@/lib/week.js'
+import { icons } from '@/lib/icons.js'
+import * as echarts from 'echarts/core';
+import { GridComponent } from 'echarts/components';
+import { LineChart } from 'echarts/charts';
+import { UniversalTransition } from 'echarts/features';
+import { CanvasRenderer } from 'echarts/renderers';
+
+echarts.use([GridComponent, LineChart, CanvasRenderer, UniversalTransition]);
 
 export default function Weather() {
   const [visible, setVisible] = useState(false)
   const [city, setCity] = useState('北京市')
   const isFirstRef = useRef(true)
   const [currentWeather, setCurrentWeather] = useState({})
+  const [futureData, setFutureData] = useState([])  // 未来天气数据数组
+  const temperatureRef = useRef(null)
+  const shouldRenderEcharts = useRef(false)
+
+  const [option, setOption] = useState({})
 
 
   useEffect(() => {
@@ -38,10 +52,21 @@ export default function Weather() {
     }
     // 获取天气
     getWeather()
+    // 获取未来天气
+    getFutureWeather()
   }, [city])  // city变更后会重新执行   ===   观察者
 
+  useEffect(() => {
+    if (!shouldRenderEcharts.current) {
+      shouldRenderEcharts.current = true
+      return
+    }
+    renderEcharts()
+  }, [futureData])
+
+
   const getLocationCity = async () => {
-    AMap.plugin('AMap.CitySearch',function () {
+    AMap.plugin('AMap.CitySearch', function () {
       var citySearch = new AMap.CitySearch()
       citySearch.getLocalCity(function (status, result) {
         if (status === 'complete' && result.info === 'OK') {
@@ -74,6 +99,41 @@ export default function Weather() {
         setCurrentWeather(data)
       });
     });
+  }
+
+  const getFutureWeather = () => {
+    //加载天气查询插件
+    AMap.plugin("AMap.Weather", function () {
+      //创建天气查询实例
+      var weather = new AMap.Weather();
+      //执行实时天气信息查询
+      weather.getForecast(city, function (err, data) {
+        //err 正确时返回 null
+        //data 返回天气预报数据，返回数据见下表
+        const [, ...futureData] = data.forecasts
+        setFutureData(futureData)
+        setOption({
+          xAxis: {
+            type: 'category',
+            data: futureData.map(item => weeks[item.week])
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: futureData.map(item => item.dayTemp),
+              type: 'line'
+            }
+          ]
+        })
+      });
+    });
+  }
+
+  const renderEcharts = () => {
+    const myChart = echarts.init(temperatureRef.current)  // 先声明图表要渲染在哪里
+    myChart.setOption(option)
   }
 
   return (
@@ -114,8 +174,28 @@ export default function Weather() {
             </div>
           </div>
         </div>
-        <div className="future"></div>
-        <div className="temperature"></div>
+        <div className="future mt-[24px]">
+          <div className="title text-[18px] font-medium mb-[16px]">三日天气预报</div>
+          <ul className='flex gap-[16px] overflow-x-scroll'>
+            {
+              futureData.map((item, index) => {
+                return (
+                  <li key={index} className='w-[120px] shrink-0 border border-[#F3F4F6] rounded-[16px] shadow-[0px_1xp_2px_0px_rgba(0,0,0,0.5)] flex flex-col p-[17px] box-border'>
+                    <div className="week text-[4B5563]">{weeks[item.week]}</div>
+                    <i className={`iconfont ${icons[item.dayWeather]} mt-[8px] mb-[10px] text-center text-[33px]! text-[#FFCC01]`}></i>
+                    <div className='text-center'>
+                      <span className='font-normal'>{item.dayTemp}°</span>
+                      <span className='text-[#9CA3AF]'>/{item.nightTemp}°</span>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+        <div className="temperature w-full h-[300px]" ref={temperatureRef}>
+
+        </div>
       </div>
 
       <Cascader

@@ -13,6 +13,7 @@
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@tailwindcss/vite": "^4.3.3",
     "antd-mobile": "^5.43.0",
+    "echarts": "^6.1.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
