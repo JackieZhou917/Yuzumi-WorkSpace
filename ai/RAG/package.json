@@ -1,0 +1,20 @@
+{
+  "name": "RAG",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p dist/llm/prompts && cp src/mcp/prompts/*.md dist/llm/prompts/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "ollama": "^0.6.4",
+    "vectra": "^0.15.0",
+    "zod": "^4.6.7"
+  }
+}
