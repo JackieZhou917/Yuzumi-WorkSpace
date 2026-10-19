@@ -24,3 +24,21 @@
   7. symbol
   8. bigint
   9. object
+
+  10. Object广义数组
+  11. 元组
+  12. 值类型
+
+# type
+
+
+# interface
+
+
+# 泛型
+
+
+# 类型断言
+
+
+# 装饰器
